@@ -1,0 +1,16 @@
+
+body {
+    background-color: lightblue;
+    color: maroon;
+    font-family: Courier;
+}
+main {
+    background-color: rgb(121, 204, 121);
+    color: rgb(105, 47, 24);
+    font-family: Courier;
+    margin: 20px;
+    padding: 3px;
+}
+ol {
+    color: rgb(105, 47, 24);
+}
