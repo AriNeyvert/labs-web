@@ -1,0 +1,107 @@
+h1{
+    line-height: 1.5;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-right: 30px;
+    margin-left: 30px;
+    font-family: Courier;
+    background-color: rgb(182, 230, 94);
+    color:rgb(57, 83, 7);
+    border-style: solid;
+    border-radius: 10px;
+}
+h2{
+    line-height: 1.5;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 20px;
+    margin-left: 20px;
+    font-family: Courier;
+    background-color: rgb(187, 228, 110);
+    color:rgb(72, 105, 9);
+    border-style: solid;
+    border-radius: 10px;
+}
+.a{
+    font-family: Courier;
+    line-height: 1.5;
+    border-style: dotted;
+    border-radius: 10px;
+    background-color: rgba(135, 207, 135, 0.945);
+    color:darkgreen;
+    text-shadow: 4px 3px rgba(0, 100, 0, 0.253);
+}
+.b{
+    font-family: Courier;
+    line-height: 1.5;
+    border-style: dashed;
+    border-radius: 10px;
+    background-color: rgba(198, 180, 245, 0.945);
+    color:rgba(68, 59, 88, 0.945);
+    text-shadow: 4px 3px rgba(68, 59, 88, 0.336);
+}
+.c{
+    font-family: Courier;
+    line-height: 1.5;
+    border-style: double;
+    border-radius: 10px;
+    background-color: rgba(245, 180, 226, 0.945);
+    color:rgba(110, 16, 82, 0.945);
+    text-shadow: 4px 3px rgba(110, 16, 82, 0.377);
+}
+.d{
+    font-family: Courier;
+    line-height: 1.5;
+    border-style: dotted;
+    border-radius: 10px;
+    background-color: rgba(236, 156, 163, 0.945);
+    color:rgba(85, 18, 24, 0.945);
+}
+.e{
+    font-family: Courier;
+    line-height: 1.5;
+    border-style: dashed;
+    border-radius: 10px;
+    background-color: rgba(156, 231, 236, 0.945);
+    color:rgba(20, 82, 87, 0.945);
+}
+.f{
+    font-family: Courier;
+    line-height: 1.5;
+    border-style: double;
+    border-radius: 10px;
+    background-color: rgba(236, 238, 145, 0.945);
+    color:rgba(87, 88, 15, 0.945);
+}
+.g{
+    font-family: Courier;
+    line-height: 1.5;
+    border-style: dotted;
+    border-radius: 10px;
+    background-color: lightblue;
+    color:rgba(15, 20, 92, 0.945);
+}
+.h{
+    font-family: Courier;
+    line-height: 1.5;
+    border-style: dashed;
+    border-radius: 10px;
+    background-color: rgb(243, 211, 153);
+    color:rgb(114, 79, 15);
+}
+.i{
+    font-family: Courier;
+    line-height: 1.5;
+    border-style: double;
+    border-radius: 10px;
+    background-color: rgb(182, 230, 94);
+    color:rgb(57, 83, 7);
+}
+.source{
+    text-align: right;
+    text-shadow: 4px 3px rgba(223, 35, 198, 0.473);
+    color:rgb(68, 7, 60);
+    font-family: Courier;
+}
