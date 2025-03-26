@@ -1,0 +1,23 @@
+.citation{
+    border: 1px solid red;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px #002;
+    background: linear-gradient(to right top, rgba(238, 130, 238, 0.682),rgba(76, 0, 130, 0.671),rgba(0, 0, 255, 0.651),rgba(0, 128, 0, 0.678),rgba(255, 255, 0, 0.678),rgba(255, 166, 0, 0.716),rgba(255, 0, 0, 0.685));
+    font-family: Courier;
+}
+.text{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Courier;
+}
+.author{
+    text-align: left;
+    font-size: 30px;
+    fill-opacity: 0.8;
+    margin-top: 30px;
+    margin-left: 50%;
+    font-family: Courier;
+}
