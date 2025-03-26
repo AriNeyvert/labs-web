@@ -21,3 +21,252 @@
     margin-left: 50%;
     font-family: Courier;
 }
+
+.citation2{
+    border: 1px solid red;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px rgb(77, 16, 18);
+    background: linear-gradient(to right, rgb(206, 126, 129), rgb(207, 80, 84), rgb(201, 25, 31));
+    font-family: Courier;
+    color: rgb(77, 16, 18);
+}
+.text2{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Courier;
+}
+.author2{
+    text-align: left;
+    font-size: 30px;
+    fill-opacity: 0.8;
+    margin-top: 30px;
+    margin-left: 50%;
+    font-family: Courier;
+}
+
+.citation3{
+    border: 1px solid rgb(87, 17, 59);;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px rgb(87, 17, 59);
+    background: linear-gradient(to left, rgb(216, 125, 179), rgb(222, 89, 169), rgb(219, 32, 144));
+    font-family: Courier;
+    color: rgb(87, 17, 59);
+}
+.text3{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Courier;
+}
+.author3{
+    text-align: left;
+    font-size: 30px;
+    fill-opacity: 0.8;
+    margin-top: 30px;
+    margin-left: 50%;
+    font-family: Courier;
+}
+
+.citation4{
+    border: 1px solid rgb(47, 24, 74);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px rgb(47, 24, 74);
+    background: linear-gradient(to left top, rgb(187, 148, 235), rgb(159, 95, 237), rgb(130, 46, 232));
+    font-family: Courier;
+    color: rgb(47, 24, 74);
+}
+.text4{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Courier;
+}
+.author4{
+    text-align: left;
+    font-size: 30px;
+    fill-opacity: 0.8;
+    margin-top: 30px;
+    margin-left: 50%;
+    font-family: Courier;
+}
+
+.citation5{
+    border: 1px solid rgba(16, 22, 83, 0.682);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px rgba(16, 22, 83, 0.682);
+    background: linear-gradient(to right top, rgba(128, 137, 236, 0.682), rgba(78, 91, 225, 0.682), rgba(33, 49, 230, 0.682));
+    font-family: Courier;
+    color: rgba(10, 15, 69, 0.935);
+}
+.text5{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Courier;
+}
+.author5{
+    text-align: left;
+    font-size: 30px;
+    fill-opacity: 0.8;
+    margin-top: 30px;
+    margin-left: 50%;
+    font-family: Courier;
+}
+
+.citation6{
+    border: 1px solid rgba(11, 61, 79, 0.856);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px rgba(11, 61, 79, 0.856);
+    background: linear-gradient(to bottom, rgba(135, 213, 241, 0.808),rgba(69, 187, 230, 0.808), rgba(19, 171, 227, 0.856));
+    font-family: Courier;
+    color: rgba(11, 61, 79, 0.856)
+}
+.text6{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Courier;
+}
+.author6{
+    text-align: left;
+    font-size: 30px;
+    fill-opacity: 0.8;
+    margin-top: 30px;
+    margin-left: 50%;
+    font-family: Courier;
+}
+
+.citation7{
+    border: 1px solid rgba(19, 93, 57, 0.897);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px rgba(19, 93, 57, 0.897);
+    background: linear-gradient(to right bottom, rgba(135, 241, 190, 0.808), rgba(71, 225, 151, 0.901), rgba(15, 220, 121, 0.952));
+    font-family: Courier;
+    color: rgba(13, 72, 44, 0.897);
+}
+.text7{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Courier;
+}
+.author7{
+    text-align: left;
+    font-size: 30px;
+    fill-opacity: 0.8;
+    margin-top: 30px;
+    margin-left: 50%;
+    font-family: Courier;
+}
+.citation8{
+    border: 1px solid rgba(38, 62, 17, 0.846);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px rgba(38, 62, 17, 0.846);
+    background: linear-gradient(to left bottom, rgba(180, 238, 130, 0.682), rgba(150, 233, 77, 0.887), rgba(119, 230, 21, 0.918));
+    font-family: Courier;
+    color: rgba(38, 62, 17, 0.846);
+}
+.text8{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Courier;
+}
+.author8{
+    text-align: left;
+    font-size: 30px;
+    fill-opacity: 0.8;
+    margin-top: 30px;
+    margin-left: 50%;
+    font-family: Courier;
+}
+
+.citation9{
+    border: 1px solid rgba(95, 96, 21, 0.955);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px rgba(100, 101, 17, 0.918);
+    background: linear-gradient(to bottom, rgba(236, 238, 130, 0.682), rgba(231, 234, 68, 0.897), rgba(229, 233, 12, 0.949));
+    font-family: Courier;
+    color: rgba(85, 86, 16, 0.87)
+}
+.text9{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Courier;
+}
+.author9{
+    text-align: left;
+    font-size: 30px;
+    fill-opacity: 0.8;
+    margin-top: 30px;
+    margin-left: 50%;
+    font-family: Courier;
+}
+
+.citation10{
+    border: 1px solid rgba(93, 65, 18, 0.928);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px rgba(135, 94, 23, 0.966);
+    background: linear-gradient(to left, rgba(238, 198, 130, 0.682), rgba(239, 176, 68, 0.918), rgba(230, 150, 10, 0.918));
+    font-family: Courier;
+    color:rgba(86, 64, 26, 0.921)
+}
+.text10{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Courier;
+}
+.author10{
+    text-align: left;
+    font-size: 30px;
+    fill-opacity: 0.8;
+    margin-top: 30px;
+    margin-left: 50%;
+    font-family: Courier;
+}
+
+.citation11{
+    border: 1px solid rgb(90, 52, 19);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px rgba(80, 47, 17, 0.863);
+    background: linear-gradient(to right top, rgba(149, 97, 52, 0.777), rgba(121, 72, 29, 0.771), rgba(96, 52, 13, 0.812));
+    font-family: Courier;
+    color: rgba(89, 46, 9, 0.962)
+}
+.text11{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Courier;
+}
+.author11{
+    text-align: left;
+    font-size: 30px;
+    fill-opacity: 0.8;
+    margin-top: 30px;
+    margin-left: 50%;
+    font-family: Courier;
+}
