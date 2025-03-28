@@ -1,0 +1,56 @@
+.text-block {
+    margin: 20px;
+    padding: 50px;
+    height: 60px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(11, 84, 14, 0.486);
+    overflow: hidden;
+    transition: all 2s;
+    cursor: pointer;
+}
+
+.text-block h2 {
+    color: #333;
+    text-align: center;
+    margin: 15px;
+}
+
+.text-block .content {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.text-block:hover {
+    padding: 20px;
+    height: auto;
+    background-color: #bcdbb8;
+    box-shadow: 5px 15px rgba(6, 53, 14, 0.592);
+    border-radius: 5px;
+    transition: all 2.5s;
+}
+
+.text-block:hover h2 {
+    color: #12750e;
+}
+
+.text-block:hover .content {
+    opacity: 1;
+    transition-delay: 0.2s;
+}
+
+main {
+    padding: 20px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
