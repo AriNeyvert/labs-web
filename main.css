@@ -53,3 +53,9 @@ div.menu:hover{
     background-color: rgba(236, 167, 179, 0.627);
     box-shadow: 0 0 15px rgba(101, 16, 30, 0.668);
 }
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}

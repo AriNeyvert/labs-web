@@ -24,3 +24,9 @@ a:active{
     color:rgb(0, 0, 0);
     opacity: 0.3;
 }
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
