@@ -1,0 +1,32 @@
+a {
+    color:rgb(3, 41, 3);
+    text-decoration: none;
+    transition: 1s 2s;
+}
+
+a:link {
+    color:rgb(3, 41, 3);
+    box-shadow: 5px 5px 5px rgba(153, 23, 149, 0.644);
+    border-radius: 30px;
+}
+
+a:visited{
+    color:rgb(143, 43, 166);
+}
+
+a:hover {
+    color:rgb(196, 42, 158);
+    text-decoration: underline;
+    box-shadow: 10px 10px 5px rgba(117, 27, 96, 0.733);
+    transition: 0,3s;
+}
+a:active{
+    color:rgb(0, 0, 0);
+    opacity: 0.3;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
