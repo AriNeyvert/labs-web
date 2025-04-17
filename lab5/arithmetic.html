@@ -15,14 +15,22 @@
             let result = a + b
             alert("Сумма " + a + " и " + b + " равна " + result);
     }
+        function showAuthor() {
+            let author = "Авторка страницы:\nНейверт Арина Сергеевна";
+            alert(author);
+        }
+        function citata() {
+            let c = "Приветствую вас на моей странице!🐻";
+            alert(c);
+        }
     </script>
 </head>
 <body>
-    <header style="background-color: rgb(216, 134, 185);"><b>НГТУ, ФБ, Лабораторная работа №5</b></header>
+    <header style="background-color: rgb(216, 134, 185); cursor: pointer" onclick="showAuthor()"><b>НГТУ, ФБ, Лабораторная работа №5</b></header>
     <main>
         <div class="message" onclick="showSum()"><b>Сколько будет 5154+7891?</b></div>
-        <div class="message"><b>Узнать, кто автор страницы</b></div>
+        <div class="message" onclick="showAuthor()"><b>Узнать, кто автор страницы</b></div>
     </main>
-    <footer style="text-align: right; background-color: rgb(216, 134, 185);"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
+    <footer style="text-align: right; background-color: rgb(216, 134, 185); cursor: pointer" ondblclick="citata()"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
 </body>
 </html>
