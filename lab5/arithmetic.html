@@ -80,6 +80,54 @@
             let result = a / b;
             alert(a + " / " + b + " = " + result)
         }
+        function showPower() {
+            let inputA = document.getElementById("numberA");
+            let inputB = document.getElementById("numberB");
+            let a = parseInt(inputA.value);
+            let b = parseInt(inputB.value);
+
+            if(isNaN(b)) {
+                alert("Введите числовое значение во второе поле");
+                return;
+            }
+            inputA.style.color="";
+            inputA.style.borderColor="";
+
+            if(isNaN(a)) {
+                alert("Введите числовое значение в первое поле");
+                return;
+            }
+
+            if(a==0 && b==0) {
+                alert("Ошибка!!!")
+                inputA.focus();
+                inputA.select();
+                inputA.style.color="red"
+                inputA.style.borderColor="red"
+                return;
+            }
+            if(isNaN(b)&& isNaN(a)) {
+                alert("Ошибка!!!");
+                return;
+            }
+            inputA.style.color="";
+            inputA.style.borderColor="";
+
+            if(b==0){
+                alert("Любое число в степени 0, равно 1")
+                inputB.focus();
+                inputB.select();
+                return;
+            }
+            if(a==0){
+                alert("0 в любой стемени равен 0")
+                inputB.focus();
+                inputB.select();
+                return;
+            }
+            let result = a**b
+            alert(a + " в степени " + b + " равно " + result);
+        }
     </script>
 </head>
 <body>
@@ -91,6 +139,7 @@
         <div class="message" onclick="showDifference()"><b>Найти разность чисел</b></div>
         <div class="message" onclick="showProduct()"><b>Найти произведение</b></div>
         <div class="message" onclick="showDiv()"><b>Найти отношение чисел</b></div>
+        <div class="message" onclick="showPower()"><b>Возвести первое число в степень второго числа</b></div>
         <div class="message" onclick="showAuthor()"><b>Узнать, кто автор страницы</b></div>
     </main>
     <footer style="text-align: right; background-color: rgb(216, 134, 185); cursor: pointer" ondblclick="citata()"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
