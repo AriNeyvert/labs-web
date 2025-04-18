@@ -42,6 +42,44 @@
             let c = "Приветствую вас на моей странице!🐻";
             alert(c);
         }
+        function showDiv() {
+            let inputA = document.getElementById("numberA");
+            let inputB = document.getElementById("numberB");
+            let a = parseInt(inputA.value);
+            let b = parseInt(inputB.value);
+            
+            if(a==0){
+                alert("Если 0 поделить на любое число (кроме самого себя), будет всегда 0!!!")
+                inputA.focus();
+                inputA.select();
+                inputA.style.color="red"
+                inputA.style.borderColor="red"
+                return;
+            }
+            if(isNaN(b)) {
+                alert("Введите числовое значение во второе поле");
+                return;
+            }
+            inputA.style.color="";
+            inputA.style.borderColor="";
+
+            if(b==0){
+                alert("На ноль делить нельзя")
+                inputB.focus();
+                inputB.select();
+                inputB.style.color="red"
+                inputB.style.borderColor="red"
+                return;
+            }
+            if(isNaN(a)) {
+                alert("Введите числовое значение в первое поле");
+                return;
+            }
+            inputB.style.color="";
+            inputB.style.borderColor="";
+            let result = a / b;
+            alert(a + " / " + b + " = " + result)
+        }
     </script>
 </head>
 <body>
@@ -52,6 +90,7 @@
         <div class="message" onclick="showSum()"><b>Найти сумму чисел</b></div>
         <div class="message" onclick="showDifference()"><b>Найти разность чисел</b></div>
         <div class="message" onclick="showProduct()"><b>Найти произведение</b></div>
+        <div class="message" onclick="showDiv()"><b>Найти отношение чисел</b></div>
         <div class="message" onclick="showAuthor()"><b>Узнать, кто автор страницы</b></div>
     </main>
     <footer style="text-align: right; background-color: rgb(216, 134, 185); cursor: pointer" ondblclick="citata()"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
