@@ -128,6 +128,16 @@
             let result = a**b
             alert(a + " в степени " + b + " равно " + result);
         }
+        function changeOutput(buttonNum, backColor, textColor, borderRadius, textAlign, Height, Border) {
+            let output = document.getElementById('output')
+            output.innerHTML = "Нажата кнопка " + buttonNum
+            output.style.backgroundColor = backColor
+            output.style.color = textColor
+            output.style.borderRadius = borderRadius
+            output.style.textAlign = textAlign
+            output.style.height = Height
+            output.style.border = Border
+        }
     </script>
 </head>
 <body>
@@ -141,6 +151,13 @@
         <div class="message" onclick="showDiv()"><b>Найти отношение чисел</b></div>
         <div class="message" onclick="showPower()"><b>Возвести первое число в степень второго числа</b></div>
         <div class="message" onclick="showAuthor()"><b>Узнать, кто автор страницы</b></div>
+        <div>
+            <input type="button" value="Кнопка 1" onclick="changeOutput(1, 'red', 'yellow', '20px', 'center', '25px', '2px dotted')">
+            <input type="button" value="Кнопка 2" onclick="changeOutput(2, 'black', 'lime','20px', 'center', '25px', '2px dashed')">
+            <input type="button" value="Кнопка 3" onclick="changeOutput(3, 'purple', 'orange','20px', 'center', '25px', '2px outset green')">
+            <input type="button" value="Кнопка 4" onclick="changeOutput(4, 'darkgreen', 'pink','20px', 'center', '25px', '2px solid')">
+        </div>
+        <div id="output"></div>
     </main>
     <footer style="text-align: right; background-color: rgb(216, 134, 185); cursor: pointer" ondblclick="citata()"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
 </body>
