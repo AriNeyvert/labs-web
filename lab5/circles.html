@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нейверт Арина Сергеевна. Лабораторная 5</title>
+    <link rel="stylesheet" href="main14.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
+</head>
+<body>
+    <header style="background-color: rgb(216, 134, 185); cursor: pointer" onclick="showAuthor()">
+        <b>НГТУ, ФБ, Лабораторная работа №5</b>
+    </header>
+    
+    <main>
+        <div class="controls">
+            <button onclick="resetCircles()">Восстановить круги</button>
+        </div>
+        
+        <div class="circle-container" id="circleContainer">
+            <!-- Круги будут добавлены через JavaScript -->
+        </div>
+    </main>
+    
+    <footer style="text-align: right; background-color: rgb(216, 134, 185); cursor: pointer" ondblclick="citata()">
+        <b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b>
+    </footer>
+    
+    <script>
+        // Цвета для кругов
+        const colors = [
+            '#FF5733', '#33FF57', '#3357FF', '#F3FF33', 
+            '#FF33F3', '#33FFF3', '#FF8C33', '#8C33FF', 
+            '#33FF8C', '#FF338C'
+        ];
+        
+        // Случайные позиции для кругов
+        function getRandomPosition(containerWidth, containerHeight, circleSize) {
+            const maxX = containerWidth - circleSize;
+            const maxY = containerHeight - circleSize;
+            return {
+                x: Math.floor(Math.random() * maxX),
+                y: Math.floor(Math.random() * maxY)
+            };
+        }
+        
+        // Создание кругов
+        function createCircles() {
+            const container = document.getElementById('circleContainer');
+            const containerWidth = container.clientWidth;
+            const containerHeight = container.clientHeight;
+            const circleSize = 80;
+            
+            for (let i = 1; i <= 10; i++) {
+                const circle = document.createElement('div');
+                circle.className = 'circle';
+                circle.textContent = i;
+                circle.dataset.number = i;
+                
+                // Установка цвета
+                circle.style.backgroundColor = colors[i % colors.length];
+                
+                // Установка случайной позиции
+                const pos = getRandomPosition(containerWidth, containerHeight, circleSize);
+                circle.style.left = `${pos.x}px`;
+                circle.style.top = `${pos.y}px`;
+                
+                // Обработчик клика
+                circle.addEventListener('click', function() {
+                    this.classList.add('hidden');
+                });
+                
+                container.appendChild(circle);
+            }
+        }
+        
+        // Восстановление всех кругов
+        function resetCircles() {
+            const circles = document.querySelectorAll('.circle');
+            circles.forEach(circle => {
+                circle.classList.remove('hidden');
+            });
+        }
+        
+        // Функции для шапки и подвала
+        function showAuthor() {
+            alert("Автор: Арина Нейверт, ФБИ-33");
+        }
+        
+        function citata() {
+            alert("Терпение и труд всё перетрут!");
+        }
+        
+        // Создаем круги после загрузки страницы
+        window.onload = createCircles;
+    </script>
+</body>
+</html>
