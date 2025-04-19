@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нейверт Арина Сергеевна. Лабораторная 5</title>
+    <link rel="stylesheet" href="main16.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
+
+</head>
+<body>
+    <header style="background-color: rgb(216, 134, 185); cursor: pointer" onclick="showAuthor()">
+        <b>НГТУ, ФБ, Лабораторная работа №5</b>
+    </header>
+    
+    <main>
+        <h2 style="color: rgb(80, 34, 62); text-align: center;font-family: Courier;">Фильтры для изображения</h2>
+        
+        <div class="image-container">
+            <img id="filtered-image" src="tulpan.jpg">
+            <div class="filter-info" id="filter-info">
+                <div>Фильтр: none</div>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="filter-selector">
+            <button class="filter-btn" data-filter="blur">Blur</button>
+            <button class="filter-btn" data-filter="grayscale">Grayscale</button>
+            <button class="filter-btn" data-filter="invert">Invert</button>
+            <button class="filter-btn" data-filter="hue-rotate">Hue Rotate</button>
+            <button class="filter-btn" data-filter="sepia">Sepia</button>
+        </div>
+        
+        <div class="instructions">
+            <h3>Как использовать:</h3>
+            <ul>
+                <li>Наведите курсор на изображение - применится выбранный фильтр</li>
+                <li>Чем левее курсор - слабее эффект, чем правее - сильнее</li>
+                <li>Используйте кнопки выше для выбора фильтра или удерживайте клавиши:</li>
+                <li><span class="key-indicator">Ctrl</span> - черно-белый фильтр (grayscale)</li>
+                <li><span class="key-indicator">Alt</span> - инверсия цветов (invert)</li>
+                <li><span class="key-indicator">Shift</span> - изменение оттенка (hue-rotate)</li>
+                <li><span class="key-indicator">Shift+Alt</span> - сепия (sepia)</li>
+            </ul>
+            <p>Текущий фильтр: <span id="current-filter-name">blur</span></p>
+        </div>
+    </main>
+    
+    <footer style="text-align: right; background-color: rgb(216, 134, 185); cursor: pointer" ondblclick="citata()">
+        <b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b>
+    </footer>
+
+    <script>
+        const image = document.getElementById('filtered-image');
+        const filterInfo = document.getElementById('filter-info');
+        const progressBar = document.getElementById('progress-bar');
+        const currentFilterName = document.getElementById('current-filter-name');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        
+        let selectedFilter = 'blur';
+        let maxValues = {
+            'blur': '10px',
+            'grayscale': '100%',
+            'invert': '100%',
+            'hue-rotate': '360deg',
+            'sepia': '100%'
+        };
+        
+        // Обработчики для кнопок выбора фильтра
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                selectedFilter = button.dataset.filter;
+                currentFilterName.textContent = selectedFilter;
+            });
+        });
+        
+        // Активируем кнопку blur по умолчанию
+        document.querySelector('.filter-btn[data-filter="blur"]').classList.add('active');
+        
+        image.addEventListener('mousemove', (e) => {
+            const rect = image.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const width = rect.width;
+            const percentage = x / width;
+            
+            let filter = '';
+            let filterName = '';
+            let filterValue = '';
+            let progressWidth = percentage * 100;
+            
+            // Определяем какой фильтр применять
+            if (e.ctrlKey) {
+                filterName = 'grayscale';
+                filterValue = `${(percentage * 100).toFixed(0)}%`;
+                filter = `grayscale(${percentage})`;
+            } else if (e.altKey && e.shiftKey) {
+                filterName = 'sepia';
+                filterValue = `${(percentage * 100).toFixed(0)}%`;
+                filter = `sepia(${percentage})`;
+            } else if (e.altKey) {
+                filterName = 'invert';
+                filterValue = `${(percentage * 100).toFixed(0)}%`;
+                filter = `invert(${percentage})`;
+            } else if (e.shiftKey) {
+                filterName = 'hue-rotate';
+                filterValue = `${(percentage * 360).toFixed(0)}deg`;
+                filter = `hue-rotate(${percentage * 360}deg)`;
+            } else {
+                filterName = selectedFilter;
+                
+                switch(selectedFilter) {
+                    case 'blur':
+                        filterValue = `${(percentage * 10).toFixed(1)}px`;
+                        filter = `blur(${percentage * 10}px)`;
+                        break;
+                    case 'grayscale':
+                        filterValue = `${(percentage * 100).toFixed(0)}%`;
+                        filter = `grayscale(${percentage})`;
+                        break;
+                    case 'invert':
+                        filterValue = `${(percentage * 100).toFixed(0)}%`;
+                        filter = `invert(${percentage})`;
+                        break;
+                    case 'hue-rotate':
+                        filterValue = `${(percentage * 360).toFixed(0)}deg`;
+                        filter = `hue-rotate(${percentage * 360}deg)`;
+                        break;
+                    case 'sepia':
+                        filterValue = `${(percentage * 100).toFixed(0)}%`;
+                        filter = `sepia(${percentage})`;
+                        break;
+                }
+            }
+            
+            image.style.filter = filter;
+            filterInfo.firstElementChild.textContent = `Фильтр: ${filterName}(${filterValue})`;
+            progressBar.style.width = `${progressWidth}%`;
+            
+            // Изменение цвета прогресс-бара в зависимости от позиции
+            progressBar.style.backgroundColor = `hsl(${percentage * 360}, 70%, 60%)`;
+        });
+        
+        image.addEventListener('mouseleave', () => {
+            image.style.filter = 'none';
+            filterInfo.firstElementChild.textContent = 'Фильтр: none';
+            progressBar.style.width = '0%';
+        });
+        
+        function showAuthor() {
+            alert("Авторка работы: Нейверт Арина Сергеевна");
+        }
+        function citata() {
+            alert("Терпение и труд всё перетрут!");
+        }
+        
+    </script>
+</body>
+</html>
