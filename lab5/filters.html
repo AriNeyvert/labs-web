@@ -8,12 +8,72 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon-16x16.png">
     <link rel="icon" href="favicon-32x32.png">
+    
     <script>
-        function blurChange() {
-            let value = document.getElementById('blurValue').value + 'px';
-            document.getElementById('blurOutput').innerText = value;
-            document.getElementById('blurImage').style.filter='blur(' + value + ')';
+        function updateFilters() {
+            // Получаем значения всех ползунков
+            const blurValue = document.getElementById('blurValue').value + 'px';
+            const brightnessValue = document.getElementById('brightnessValue').value + '%';
+            const contrastValue = document.getElementById('contrastValue').value + '%';
+            const grayscaleValue = document.getElementById('grayscaleValue').value + '%';
+            const hueRotateValue = document.getElementById('hueRotateValue').value + 'deg';
+            const invertValue = document.getElementById('invertValue').value + '%';
+            const saturateValue = document.getElementById('saturateValue').value + '%';
+            const sepiaValue = document.getElementById('sepiaValue').value + '%';
+            
+            // Обновляем отображаемые значения
+            document.getElementById('blurOutput').innerText = blurValue;
+            document.getElementById('brightnessOutput').innerText = brightnessValue;
+            document.getElementById('contrastOutput').innerText = contrastValue;
+            document.getElementById('grayscaleOutput').innerText = grayscaleValue;
+            document.getElementById('hueRotateOutput').innerText = hueRotateValue;
+            document.getElementById('invertOutput').innerText = invertValue;
+            document.getElementById('saturateOutput').innerText = saturateValue;
+            document.getElementById('sepiaOutput').innerText = sepiaValue;
+            
+            // Собираем строку фильтров
+            const filterString = `
+                blur(${blurValue})
+                brightness(${brightnessValue})
+                contrast(${contrastValue})
+                grayscale(${grayscaleValue})
+                hue-rotate(${hueRotateValue})
+                invert(${invertValue})
+                saturate(${saturateValue})
+                sepia(${sepiaValue})
+            `;
+            
+            // Применяем фильтры к изображению
+            document.getElementById('filteredImage').style.filter = filterString;
         }
+        
+        function resetFilters() {
+            // Сбрасываем все ползунки к значениям по умолчанию
+            document.getElementById('blurValue').value = 0;
+            document.getElementById('brightnessValue').value = 100;
+            document.getElementById('contrastValue').value = 100;
+            document.getElementById('grayscaleValue').value = 0;
+            document.getElementById('hueRotateValue').value = 0;
+            document.getElementById('invertValue').value = 0;
+            document.getElementById('saturateValue').value = 100;
+            document.getElementById('sepiaValue').value = 0;
+            
+            // Обновляем фильтры
+            updateFilters();
+        }
+        
+        function showAuthor() {
+            alert("Авторка: Арина Нейверт, ФБИ-33");
+        }
+        
+        function citata() {
+            alert("Терпение и труд всё перетрут!");
+        }
+        
+        // Инициализация при загрузке
+        window.onload = function() {
+            updateFilters();
+        };
     </script>
 </head>
 <body>
@@ -22,14 +82,69 @@
     </header>
     
     <main>
-        <div>
-            Фильтр blur
-            <input type="range" min="0" max="20" value="0" onchange="blurChange()" id="blurValue">
-            <span id="blurOutput"></span>
+        <div class="controls-container">
+            <h2>Фильтры для изображения</h2>
+            
+            <div class="filter-control">
+                <label for="blurValue">Blur (размытие):</label>
+                <input type="range" min="0" max="20" value="0" oninput="updateFilters()" id="blurValue">
+                <span class="output-value" id="blurOutput">0px</span>
+            </div>
+            
+            <div class="filter-control">
+                <label for="brightnessValue">Brightness (яркость):</label>
+                <input type="range" min="0" max="500" value="100" oninput="updateFilters()" id="brightnessValue">
+                <span class="output-value" id="brightnessOutput">100%</span>
+            </div>
+            
+            <div class="filter-control">
+                <label for="contrastValue">Contrast (контраст):</label>
+                <input type="range" min="0" max="500" value="100" oninput="updateFilters()" id="contrastValue">
+                <span class="output-value" id="contrastOutput">100%</span>
+            </div>
+            
+            <div class="filter-control">
+                <label for="grayscaleValue">Grayscale (оттенки серого):</label>
+                <input type="range" min="0" max="100" value="0" oninput="updateFilters()" id="grayscaleValue">
+                <span class="output-value" id="grayscaleOutput">0%</span>
+            </div>
+            
+            <div class="filter-control">
+                <label for="hueRotateValue">Hue-rotate (оттенок):</label>
+                <input type="range" min="0" max="360" value="0" oninput="updateFilters()" id="hueRotateValue">
+                <span class="output-value" id="hueRotateOutput">0deg</span>
+            </div>
+            
+            <div class="filter-control">
+                <label for="invertValue">Invert (инверсия):</label>
+                <input type="range" min="0" max="100" value="0" oninput="updateFilters()" id="invertValue">
+                <span class="output-value" id="invertOutput">0%</span>
+            </div>
+            
+            <div class="filter-control">
+                <label for="saturateValue">Saturate (насыщенность):</label>
+                <input type="range" min="0" max="500" value="100" oninput="updateFilters()" id="saturateValue">
+                <span class="output-value" id="saturateOutput">100%</span>
+            </div>
+            
+            <div class="filter-control">
+                <label for="sepiaValue">Sepia (сепия):</label>
+                <input type="range" min="0" max="100" value="0" oninput="updateFilters()" id="sepiaValue">
+                <span class="output-value" id="sepiaOutput">0%</span>
+            </div>
+            
+            <button onclick="resetFilters()">Сбросить все фильтры</button>
+            
+            <div>
+                <img src='tulpan.jpg' id='filteredImage'>
+            </div>
         </div>
-       <div><img src='tulpan.jpg' id='blurImage'></div>
     </main>
     
     <footer style="text-align: right; background-color: rgb(216, 134, 185); cursor: pointer" ondblclick="citata()">
         <b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b>
     </footer>
+    
+    
+</body>
+</html>
