@@ -4,26 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Нейверт Арина Сергеевна. Лабораторная 6</title>
-
     <link rel="stylesheet" href="main18.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon-16x16.png">
     <link rel="icon" href="favicon-32x32.png">
     <script>
         function showMutipleTable() {
-            let tbl = document.getElementById('mtable');
-            tbl.innerHTML = '<h1>Таблица умножения</h1>';
-            for(let i = 1; i <= 10; i++) {
-                let s = `<div>${i} × 7 = ${i*7}</div>`;
+            // Получаем значения из полей ввода
+            const multiplier = parseInt(document.getElementById('multiplier').value) || 7;
+            const start = parseInt(document.getElementById('start').value) || 1;
+            let end = parseInt(document.getElementById('end').value) || 10;
+            
+            // Проверяем, чтобы start не был больше end
+            if (start > end) {
+                end = start;
+                document.getElementById('end').value = start;
+            }
+            
+            const tbl = document.getElementById('mtable');
+            tbl.innerHTML = `<h1>Таблица умножения</h1>`;
+            
+            for(let i = start; i <= end; i++) {
+                let s = `<div>${i} × ${multiplier} = ${i * multiplier}</div>`;
                 tbl.innerHTML += s;
             }
         }
+        
+        // Инициализация при загрузке
+        window.onload = function() {
+            showMutipleTable();
+        };
     </script>
 </head>
-<body onload="showMutipleTable()">
+<body>
     <header style="background-color: rgb(216, 134, 185);"><b>НГТУ, ФБ, Лабораторная работа №6</b></header>
     <main>
         <div id="mtable"></div>
+        
+        <div class="controls">
+            <div class="input-group">
+                <label for="multiplier">Умножить на:</label>
+                <input type="number" id="multiplier" value="7" min="1">
+            </div>
+            
+            <div class="input-group">
+                <label for="start">Начать с:</label>
+                <input type="number" id="start" value="1" min="1">
+            </div>
+            
+            <div class="input-group">
+                <label for="end">Закончить на:</label>
+                <input type="number" id="end" value="10" min="1">
+            </div>
+            
+            <button onclick="showMutipleTable()">Таблица</button>
+        </div>
     </main>
     <footer style="text-align: right; background-color: rgb(216, 134, 185);"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
 </body>
