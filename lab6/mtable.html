@@ -4,17 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Нейверт Арина Сергеевна. Лабораторная 6</title>
-    <link rel="stylesheet" href="main17.css">
+
+    <link rel="stylesheet" href="main18.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon-16x16.png">
     <link rel="icon" href="favicon-32x32.png">
+    <script>
+        function showMutipleTable() {
+            let tbl = document.getElementById('mtable');
+            tbl.innerHTML = '<h1>Таблица умножения</h1>';
+            for(let i = 1; i <= 10; i++) {
+                let s = `<div>${i} × 7 = ${i*7}</div>`;
+                tbl.innerHTML += s;
+            }
+        }
+    </script>
 </head>
-<body>
+<body onload="showMutipleTable()">
     <header style="background-color: rgb(216, 134, 185);"><b>НГТУ, ФБ, Лабораторная работа №6</b></header>
-    <hr>
-    <ul>
-        <li><a href="mtable.html">Таблица умножения</a></li>
-    </ul>
+    <main>
+        <div id="mtable"></div>
+    </main>
     <footer style="text-align: right; background-color: rgb(216, 134, 185);"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
 </body>
 </html>
