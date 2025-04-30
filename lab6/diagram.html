@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нейверт Арина Сергеевна. Лабораторная работа №6</title>
+    <style>
+        footer {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+        #diag-container {
+            background-color: #d9ebfb; /* Светло-голубой фон */
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 0 0 15px rgba(20, 19, 19, 0.175);
+        }
+        #diag {
+            display: flex;
+            align-items: flex-end;
+            height: 500px;
+            gap: 10px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+        .bar {
+            width: 50px;
+            background-color: #9944c1;
+            border: 1px solid #3084d3;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            transition: height 0.5s ease;
+        }
+    </style>
+
+    <script>
+        function showDiagram(){
+            let data = [86, 35, 25, 28, 92, 60, 41, 17, 9, 43];
+            let colors = ['#FF9AA2','#FFB7B2','#FFDAC1','#E2F0CB','#B5EAD7','#C7CEEA','#A2D7D8','#F8B195','#F67280', '#6C5B7B'];
+            let bars = document.getElementsByClassName('bar');
+            const diagHeight = document.getElementById('diag').clientHeight;
+            const maxData = Math.max(...data);
+            const k = diagHeight / maxData * 0.9;
+            
+            for (let i = 0; i < data.length; i++) {
+                bars[i].style.height = k * data[i] + 'px';
+                bars[i].style.backgroundColor = colors[i];
+                bars[i].textContent = data[i];
+                
+                // Для темных цветов делаем текст белым, для светлых - черным
+                const color = colors[i].substring(1);
+                const rgb = parseInt(color, 16);
+                const r = (rgb >> 16) & 0xff;
+                const g = (rgb >> 8) & 0xff;
+                const b = (rgb >> 0) & 0xff;
+                const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+                
+                bars[i].style.color = brightness > 128 ? 'black' : 'white';
+            }
+        }
+        window.onload = function() {
+            showDiagram();
+        };
+    </script>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
+</head>
+<body>
+    <header style="background-color: rgb(216, 134, 185);"><b>НГТУ, ФБ, Лабораторная работа №6</b></header>
+    <main>
+        <div id="diag-container">
+            <div id="diag">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </main>
+    <footer style="text-align: right; background-color: rgb(216, 134, 185);"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
+</body>
+</html>
