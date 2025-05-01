@@ -25,8 +25,8 @@
             margin-bottom: 20px;
             color: black;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            font-family: 'Courier New', Courier, monospace
-            
+            font-family: 'Courier New', Courier, monospace;
+            transition: color 0.5s ease-in-out;
         }
         footer {
             text-align: right;
@@ -50,8 +50,34 @@
             color: #2c3e50;
             padding-left: 20px;
         }
+        .buttons-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #8e44ad;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #732d91;
+        }
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
     </style>
     <script>
+        let colorTimer;
+        let updateTimer;
+        
         function showDates(){
             let today = new Date();
             let locales = [
@@ -83,12 +109,54 @@
             
             document.getElementById('current-dates').innerHTML = html;
         }
+        
+        function chargeColors(){
+            const header = document.getElementsByTagName('header')[0];
+            const rgb = `rgb(${Math.random()* 255}, ${Math.random()* 255}, ${Math.random()* 255})`;
+            header.style.color = rgb;
+        }
+
+        function startChangeColors(){
+            chargeColors();
+            colorTimer = setInterval(chargeColors, 1500); // Изменяем цвет каждые 1.5 секунды
+            document.getElementById('start-btn').disabled = true;
+            document.getElementById('stop-btn').disabled = false;
+        }
+        
+        function stopChangeColors(){
+            clearInterval(colorTimer);
+            document.getElementById('start-btn').disabled = false;
+            document.getElementById('stop-btn').disabled = true;
+        }
+        
+        function startUpdatingTime() {
+            showDates(); // Сразу обновляем время
+            updateTimer = setInterval(showDates, 1000); // Обновляем каждую секунду
+            document.getElementById('update-time-btn').disabled = true;
+            document.getElementById('stop-update-btn').disabled = false;
+        }
+        
+        function stopUpdatingTime() {
+            clearInterval(updateTimer);
+            document.getElementById('update-time-btn').disabled = false;
+            document.getElementById('stop-update-btn').disabled = true;
+        }
     </script>
 </head>
 <body onload="showDates()">
     <header><b>НГТУ, ФБ, Лабораторная работа №6</b></header>
     <main>
         <div id="current-dates"></div>
+        <div class="buttons-container">
+            <div>
+                <button onclick="startChangeColors()" id="start-btn">Старт смены цвета</button>
+                <button onclick="stopChangeColors()" disabled id="stop-btn">Стоп смены цвета</button>
+            </div>
+            <div>
+                <button onclick="startUpdatingTime()" id="update-time-btn">Обновлять время</button>
+                <button onclick="stopUpdatingTime()" disabled id="stop-update-btn">Остановить обновление</button>
+            </div>
+        </div>
     </main>
     <footer><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
 </body>
