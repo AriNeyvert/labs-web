@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нейверт Арина Сергеевна. Лабораторная работа №6</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f3f7;
+        }
+        header, footer {
+            background-color: rgb(216, 134, 185);
+            padding: 15px;
+            text-align: left;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            color: black;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-family: 'Courier New', Courier, monospace
+            
+        }
+        footer {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .date-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .locale-name {
+            font-weight: bold;
+            color: #8e44ad;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .date-time {
+            font-size: 16px;
+            color: #2c3e50;
+            padding-left: 20px;
+        }
+    </style>
+    <script>
+        function showDates(){
+            let today = new Date();
+            let locales = [
+                {code: 'ru-RU', name: 'Россия'},
+                {code: 'en-US', name: 'США'},
+                {code: 'de-DE', name: 'Германия'},
+                {code: 'ja-JP', name: 'Япония'},
+                {code: 'ar-SA', name: 'Саудовская Аравия'},
+                {code: 'fr-FR', name: 'Франция'}
+            ];
+            
+            let html = '';
+            
+            locales.forEach(locale => {
+                html += `
+                <div class="date-container">
+                    <div class="locale-name">${locale.name} (${locale.code})</div>
+                    <div class="date-time">${today.toLocaleString(locale.code, {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        second: 'numeric'
+                    })}</div>
+                </div>`;
+            });
+            
+            document.getElementById('current-dates').innerHTML = html;
+        }
+    </script>
+</head>
+<body onload="showDates()">
+    <header><b>НГТУ, ФБ, Лабораторная работа №6</b></header>
+    <main>
+        <div id="current-dates"></div>
+    </main>
+    <footer><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
+</body>
+</html>
