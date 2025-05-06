@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фармсинтез - О компании</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
+    <style>
+        :root {
+            --primary: #005b9f;
+            --primary-dark: #003d6b;
+            --primary-light: #e6f2ff;
+            --secondary: #4a90e2;
+            --accent: #ff9800;
+            --text: #333333;
+            --text-light: #666666;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Шапка */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .logo-text h1 {
+            font-size: 22px;
+            margin-bottom: 3px;
+            color: var(--primary);
+        }
+
+        .logo-text p {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Меню */
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            cursor: pointer;
+            z-index: 1001;
+            position: relative;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Мобильное меню */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 80px 20px 20px;
+            transition: var(--transition);
+            overflow-y: auto;
+        }
+        .mobile-menu.active {
+            right: 0;
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        /* Основное содержимое */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Герой-секция */
+        .hero {
+            position: relative;
+            height: 500px;
+            background: url('fon2.jpg') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-btn:hover {
+            background-color: #e68a00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Секции */
+        .section {
+            margin-bottom: 50px;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            color: white;
+            font-size: 16px;
+        }
+
+        /* Сетка изображений */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .image-card {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-card .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: var(--white);
+            padding: 20px;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        /* Списки */
+        ul {
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* Ссылки */
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Кнопка "наверх" */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Подвал */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: var(--white);
+            padding: 50px 0 25px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            margin: 0 15px 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .footer-links a i {
+            margin-right: 8px;
+            font-size: 14px;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.8;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        .section:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero {
+                height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 20px;
+            }
+            
+            .section {
+                padding: 30px 20px;
+                margin-bottom: 30px;
+            }
+            
+            .section h2 {
+                font-size: 24px;
+                padding-bottom: 10px;
+            }
+            
+            .logo img {
+                height: 40px;
+            }
+            
+            .logo-text h1 {
+                font-size: 18px;
+            }
+            
+            .image-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .image-card img {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="RGZ.html" class="logo">
+                <img src="fon.jpg">
+                <div class="logo-text">
+                    <h1>Фармсинтез</h1>
+                    <p>Инновации в фармацевтике</p>
+                </div>
+            </a>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+    
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="RGZ.html" class="active"><i class="fas fa-building"></i> О компании</a>
+        <a href="news.html"><i class="fas fa-newspaper"></i> Новости</a>
+        <a href="currency.html"><i class="fas fa-chart-line"></i> Курс валют</a>
+        <a href="contacts.html"><i class="fas fa-address-book"></i> Контакты</a>
+        <a href="video.html"><i class="fas fa-video"></i> Видео</a>
+    </div>
+    
+    <!-- Герой-секция с фоновым изображением -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Фармсинтез</h1>
+            <p>Инновации в фармацевтике</p>
+            <a href="#about" class="hero-btn">Подробнее о компании</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="section" id="about">
+            <h2>О компании</h2>
+            <p style="color: black;"><strong>ПАО «ФАРМСИНТЕЗ»</strong> — российская фармацевтическая компания, специализирующаяся на производстве активных фармацевтических субстанций и готовых лекарственных форм, а также предоставляющая услуги контрактного производства лекарственных средств.</p>
+            <p style="color: black;">Научно-производственный комплекс компании входит в число ведущих фармацевтических предприятий России.</p>
+            
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="sovremennoe_proizvodstvo.jpg" alt="Производство Фармсинтез">
+                    <div class="caption">Современное производство</div>
+                </div>
+                <div class="image-card">
+                    <img src="laboratoria.jpg" alt="Лаборатория">
+                    <div class="caption">Научная лаборатория</div>
+                </div>
+                <div class="image-card">
+                    <img src="vrachi.jpg" alt="Команда">
+                    <div class="caption">Профессиональная команда</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Более 25 лет успешной работы</h2>
+            <p style="color: black;">Компания <strong>Фармсинтез</strong> работает в нескольких ключевых направлениях:</p>
+            <ul>
+                <li><strong>Разработка новых лекарственных препаратов</strong> — наши ученые постоянно работают над созданием инновационных лекарств.</li>
+                <li><strong>Производство готовых лекарственных форм</strong> — современные производственные мощности позволяют выпускать препараты высокого качества.</li>
+                <li><strong>Контрактное производство</strong> — мы предлагаем услуги по производству лекарственных средств для других фармкомпаний.</li>
+                <li><strong>Научные исследования</strong> — сотрудничество с ведущими научными центрами России и зарубежья.</li>
+            </ul>
+            <p style="color: black;">Узнать больше о нашей деятельности можно на <a href="https://pharmsynthez.com/" target="_blank" class="link">официальном сайте <i class="fas fa-external-link-alt"></i></a>.</p>
+        </div>
+        
+        <div class="section">
+            <h2>История компании</h2>
+            <p style="color: black;"><strong>1992 год</strong> — основание компании небольшой группой ученых-фармацевтов.</p>
+            <p style="color: black;"><strong>1998 год</strong> — запуск первого собственного производственного комплекса.</p>
+            <p style="color: black;"><strong>2005 год</strong> — выход на международные рынки с собственными разработками.</p>
+            <p style="color: black;"><strong>2012 год</strong> — открытие современного научно-исследовательского центра.</p>
+            <p style="color: black;"><strong>2020 год</strong> — компания вошла в <strong>ТОП-20 российских фармпроизводителей</strong> по объему продаж.</p>
+            <p style="color: black;">Сегодня <em>Фармсинтез</em> — это:</p>
+            <ul>
+                <li>Более 1000 сотрудников</li>
+                <li>3 производственных площадки</li>
+                <li>Собственный R&D центр</li>
+                <li>Продукция в 15 странах мира</li>
+            </ul>
+        </div>
+    </div>
+    
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="RGZ.html"><i class="fas fa-building"></i> О компании</a>
+                <a href="news.html"><i class="fas fa-newspaper"></i> Новости</a>
+                <a href="currency.html"><i class="fas fa-chart-line"></i> Курс валют</a>
+                <a href="contacts.html"><i class="fas fa-address-book"></i> Контакты</a>
+                <a href="video.html"><i class="fas fa-video"></i> Видео</a>
+            </div>
+            <div class="copyright">
+                © 2023 Фармсинтез. Все права защищены.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Мобильное меню
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            // Блокировка прокрутки при открытом меню
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+        
+        menuToggle.addEventListener('click', toggleMenu);
+        
+        // Закрытие меню при клике на ссылку
+        const menuLinks = mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Кнопка "наверх"
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Анимация при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
