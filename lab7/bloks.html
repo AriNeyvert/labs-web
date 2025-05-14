@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нейверт Арина Сергеевна. Лабораторная 7</title>
+    <link rel="stylesheet" href="main20.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
+    <script>
+    function addNewBlock() {
+        let newBlock = document.createElement('div');
+        newBlock.style.backgroundColor = 'lightpink';
+        newBlock.style.height = '40px';
+        newBlock.style.border = '2px solid #ff69b4'; // Розовая рамка
+        newBlock.style.borderRadius = '8px'; // Закругленные углы
+        newBlock.style.margin = '10px 0'; // Внешние отступы сверху и снизу
+        newBlock.style.padding = '10px'; // Внутренние отступы
+        newBlock.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)'; // Легкая тень
+        newBlock.style.width = 'calc(100% - 24px)'; // Ширина с учетом padding и border
+        newBlock.style.transition = 'all 0.3s ease'; // Плавные анимации
+        
+        document.querySelector('main').appendChild(newBlock);
+    }
+</script>
+</head>
+<body>
+    <header style="background-color: rgb(216, 134, 185);"><b>НГТУ, ФБ, Лабораторные работа 7</b></header>
+    <main>
+        <button onclick="addNewBlock()">Добавить блок</button>
+    </main>
+    <footer style="text-align: right; background-color: rgb(216, 134, 185);"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
+</body>
+</html>
