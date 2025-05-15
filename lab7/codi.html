@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нейверт Арина Сергеевна. Лабораторная 7</title>
+    <link rel="stylesheet" href="main21.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
+    <script src="codi.js"></script>
+</head>
+<body>
+    <header style="background-color: rgb(216, 134, 185);"><b>НГТУ, ФБ, Лабораторные работа 7</b></header>
+    <main>
+        <button id="showStocks">Курс акций ТГК-1</button>
+        <div id="stocksTable"></div>
+    </main>
+    <footer style="text-align: right; background-color: rgb(216, 134, 185);"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
+
+    <script>
+        document.getElementById('showStocks').addEventListener('click', function() {
+            
+            // Рассчитываем разницы
+            const differences = [];
+            for (let i = 0; i < prices.length; i++) {
+                if (i === 0) {
+                    differences.push('-');
+                } else {
+                    differences.push(prices[i] - prices[i-1]);
+                }
+            }
+            
+            // Рассчитываем статистику
+            const average = prices.reduce((sum, price) => sum + price, 0) / prices.length;
+            const min = Math.min(...prices);
+            const max = Math.max(...prices);
+            
+            // Создаем таблицу
+            let tableHTML = `
+                <table>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Цена акций</th>
+                        <th>Изменение</th>
+                    </tr>
+            `;
+            
+            for (let i = 0; i < prices.length; i++) {
+                let diffClass = '';
+                if (differences[i] !== '-') {
+                    if (differences[i] > 0) {
+                        diffClass = 'positive';
+                    } else if (differences[i] < 0) {
+                        diffClass = 'negative';
+                    }
+                }
+                
+                tableHTML += `
+                    <tr>
+                        <td>${dates[i]}</td>
+                        <td>${prices[i].toFixed(6)}</td>
+                        <td class="${diffClass}">${differences[i] === '-' ? '-' : differences[i].toFixed(6)}</td>
+                    </tr>
+                `;
+            }
+            
+            tableHTML += `</table>`;
+            
+            // Добавляем статистику
+            tableHTML += `
+                <div class="stats">
+                    Среднее значение: ${average.toFixed(6)} руб<br>
+                    Минимальное значение: ${min.toFixed(6)} руб<br>
+                    Максимальное значение: ${max.toFixed(6)} руб
+                </div>
+            `;
+            
+            // Вставляем таблицу на страницу
+            document.getElementById('stocksTable').innerHTML = tableHTML;
+        });
+    </script>
+</body>
+</html>
