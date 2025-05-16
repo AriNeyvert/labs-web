@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нейверт Арина Сергеевна. Лабораторная 7</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
+    <style>
+        .weather-container {
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #d886b9;
+            border-radius: 10px;
+            background-color: #f8e8f3;
+        }
+        .weather-data {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .weather-time {
+            text-align: center;
+            padding: 10px;
+            background-color: #e8c4dc;
+            border-radius: 5px;
+            margin: 5px;
+            min-width: 100px;
+        }
+        .temperature {
+            font-size: 18px;
+            font-weight: bold;
+            color: #8a2be2;
+        }
+        button {
+            background-color: #d886b9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #c975a8;
+        }
+    </style>
+</head>
+<body>
+    <header style="background-color: rgb(216, 134, 185);"><b>НГТУ, ФБ, Лабораторные работа 7</b></header>
+    <main>
+        <div class="weather-container" style="text-align: center;">
+            <h2>Прогноз погоды в Новосибирске</h2>
+            <button onclick="getWeather()">Получить прогноз погоды</button>
+            <div id="weatherResults" class="weather-data"></div>
+        </div>
+    </main>
+    <footer style="text-align: right; background-color: rgb(216, 134, 185);"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
+
+    <script>
+        function getWeather() {
+            const url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m&timezone=Asia%2FBangkok';
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const weatherResults = document.getElementById('weatherResults');
+                    weatherResults.innerHTML = '';
+                    
+                    // Получаем индексы для 8:00, 12:00 и 20:00
+                    const times = data.hourly.time;
+                    const temperatures = data.hourly.temperature_2m;
+                    
+                    // Находим индексы нужных нам времен
+                    const index8am = times.findIndex(time => time.includes('T08:00'));
+                    const index12pm = times.findIndex(time => time.includes('T12:00'));
+                    const index8pm = times.findIndex(time => time.includes('T20:00'));
+                    
+                    // Создаем элементы для отображения данных
+                    if (index8am !== -1) {
+                        createWeatherElement('8:00', temperatures[index8am], times[index8am]);
+                    }
+                    if (index12pm !== -1) {
+                        createWeatherElement('12:00', temperatures[index12pm], times[index12pm]);
+                    }
+                    if (index8pm !== -1) {
+                        createWeatherElement('20:00', temperatures[index8pm], times[index8pm]);
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении данных о погоде:', error);
+                    document.getElementById('weatherResults').innerHTML = 
+                        '<p>Произошла ошибка при загрузке данных о погоде. Пожалуйста, попробуйте позже.</p>';
+                });
+        }
+        
+        function createWeatherElement(timeLabel, temperature, fullDateTime) {
+            const date = new Date(fullDateTime);
+            const formattedDate = date.toLocaleDateString('ru-RU');
+            
+            const weatherElement = document.createElement('div');
+            weatherElement.className = 'weather-time';
+            weatherElement.innerHTML = `
+                <div><strong>${timeLabel}</strong></div>
+                <div class="temperature">${temperature} °C</div>
+                <div>${formattedDate}</div>
+            `;
+            
+            document.getElementById('weatherResults').appendChild(weatherElement);
+        }
+    </script>
+</body>
+</html>
