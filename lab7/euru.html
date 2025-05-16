@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нейверт Арина Сергеевна. Лабораторная 7</title>
+    <link rel="stylesheet" href="main22.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
+    <style>
+        .exchange-rate-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #d886b9;
+            border-radius: 10px;
+            background-color: #f9f0f5;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .exchange-rate-title {
+            color: #8e44ad;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .rate-info {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        
+        .rate-value {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .rate-difference {
+            font-weight: bold;
+        }
+        
+        .up {
+            color: #27ae60;
+        }
+        
+        .down {
+            color: #e74c3c;
+        }
+        
+        .date-info {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-top: 15px;
+        }
+        
+        .credit {
+            margin-top: 20px;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        button {
+            background-color: #d886b9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+        }
+        
+        button:hover {
+            background-color: #c96da8;
+        }
+    </style>
+</head>
+<body>
+    <header style="background-color: rgb(216, 134, 185);"><b>НГТУ, ФБ, Лабораторные работа 7</b></header>
+    <main>
+        <button onclick="getEuroExchangeRate()">Получить курс евро</button>
+        <div id="exchange-rate-result"></div>
+    </main>
+    <footer style="text-align: right; background-color: rgb(216, 134, 185);"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
+
+    <script>
+        function getEuroExchangeRate() {
+            const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
+            fetch(url)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(json) {
+                    displayExchangeRate(json);
+                })
+                .catch(function(error) {
+                    document.getElementById('exchange-rate-result').innerHTML = 
+                        '<div class="exchange-rate-container">Ошибка при получении данных: ' + error.message + '</div>';
+                });
+        }
+
+        function displayExchangeRate(data) {
+            const euro = data.Valute.EUR;
+            const previousEuro = data.Valute.EUR.Previous;
+            const currentEuro = euro.Value;
+            const difference = currentEuro - previousEuro;
+            const differencePercent = (difference / previousEuro * 100).toFixed(2);
+            
+            let differenceText, differenceClass;
+            if (difference > 0) {
+                differenceText = `+${difference.toFixed(4)} (+${differencePercent}%)`;
+                differenceClass = 'up';
+            } else if (difference < 0) {
+                differenceText = `${difference.toFixed(4)} (${differencePercent}%)`;
+                differenceClass = 'down';
+            } else {
+                differenceText = '0.0000 (0.00%)';
+                differenceClass = '';
+            }
+            
+            const resultDiv = document.getElementById('exchange-rate-result');
+            resultDiv.innerHTML = `
+                <div class="exchange-rate-container">
+                    <h3 class="exchange-rate-title">Курс евро (EUR) ЦБ РФ</h3>
+                    <div class="rate-info">Текущий курс: <span class="rate-value">${currentEuro.toFixed(4)} руб.</span></div>
+                    <div class="rate-info">Предыдущий курс: <span class="rate-value">${previousEuro.toFixed(4)} руб.</span></div>
+                    <div class="rate-info">Изменение: <span class="rate-difference ${differenceClass}">${differenceText}</span></div>
+                    <div class="date-info">Дата актуальности курса: ${new Date(data.Date).toLocaleString('ru-RU')}</div>
+                    <div class="credit">
+                        Данные предоставлены <a href="https://www.cbr-xml-daily.ru/" target="_blank">Центральным Банком РФ</a>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
