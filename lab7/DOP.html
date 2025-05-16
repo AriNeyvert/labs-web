@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нейверт Арина Сергеевна. Лабораторная 7</title>
+    <link rel="stylesheet" href="main20.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
+    <style>
+        .weather-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .current-weather {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .chart-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .chart {
+            width: 48%;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .bar-chart {
+            display: flex;
+            height: 300px;
+            align-items: flex-end;
+            justify-content: space-around;
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        .bar {
+            width: 40px;
+            background-color: #4CAF50;
+            margin: 0 5px;
+            position: relative;
+            transition: height 0.5s ease;
+        }
+        
+        .bar.humidity {
+            background-color: #2196F3;
+        }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        .bar-value {
+            position: absolute;
+            top: -20px;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        .axis {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #000;
+        }
+        
+        .y-axis {
+            position: absolute;
+            left: 0;
+            width: 1px;
+            height: 100%;
+            background-color: #000;
+        }
+        
+        .y-tick {
+            position: absolute;
+            left: -30px;
+            width: 30px;
+            text-align: right;
+            font-size: 10px;
+        }
+        
+        button {
+            background-color: #8e44ad;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        button:hover {
+            background-color: #9b59b6;
+        }
+        
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #8e44ad;
+            padding-bottom: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header style="background-color: rgb(216, 134, 185);"><b>НГТУ, ФБ, Лабораторные работа 7</b></header>
+    <main>
+        <div class="weather-container">
+            <h2>Прогноз погоды в Новосибирске</h2>
+            
+            <button onclick="fetchWeatherData()">Получить данные о погоде</button>
+            
+            <div class="current-weather" id="currentWeather">
+                <h3>Текущая погода</h3>
+                <p>Загрузка данных...</p>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart">
+                    <h3>Температура (°C)</h3>
+                    <div class="bar-chart" id="tempChart">
+                        <div class="axis"></div>
+                        <div class="y-axis"></div>
+                    </div>
+                </div>
+                
+                <div class="chart">
+                    <h3>Относительная влажность (%)</h3>
+                    <div class="bar-chart" id="humidityChart">
+                        <div class="axis"></div>
+                        <div class="y-axis"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer style="text-align: right; background-color: rgb(216, 134, 185);"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
+
+    <script>
+        function fetchWeatherData() {
+            // URL для запроса текущей погоды и прогноза
+            const currentWeatherUrl = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&current=temperature_2m,relative_humidity_2m&timezone=Asia%2FBangkok';
+            const forecastUrl = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m,relative_humidity_2m&timezone=Asia%2FBangkok&forecast_days=1';
+            
+            // Получаем текущую погоду
+            fetch(currentWeatherUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const current = data.current;
+                    const currentWeatherDiv = document.getElementById('currentWeather');
+                    
+                    currentWeatherDiv.innerHTML = `
+                        <h3>Текущая погода (${new Date().toLocaleString()})</h3>
+                        <p>Температура: ${current.temperature_2m} °C</p>
+                        <p>Влажность: ${current.relative_humidity_2m}%</p>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении текущей погоды:', error);
+                    document.getElementById('currentWeather').innerHTML = '<p>Не удалось загрузить текущую погоду</p>';
+                });
+            
+            // Получаем прогноз погоды
+            fetch(forecastUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const hourly = data.hourly;
+                    createCharts(hourly);
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении прогноза погоды:', error);
+                });
+        }
+        
+        function createCharts(hourlyData) {
+            const tempChart = document.getElementById('tempChart');
+            const humidityChart = document.getElementById('humidityChart');
+            
+            // Очищаем предыдущие графики
+            tempChart.innerHTML = '<div class="axis"></div><div class="y-axis"></div>';
+            humidityChart.innerHTML = '<div class="axis"></div><div class="y-axis"></div>';
+            
+            // Выбираем данные для отображения (каждые 3 часа)
+            const timeLabels = [];
+            const temperatures = [];
+            const humidities = [];
+            
+            for (let i = 0; i < hourlyData.time.length; i += 3) {
+                timeLabels.push(hourlyData.time[i].substring(11, 16)); // Берем только часы:минуты
+                temperatures.push(hourlyData.temperature_2m[i]);
+                humidities.push(hourlyData.relative_humidity_2m[i]);
+            }
+            
+            // Находим минимальные и максимальные значения для масштабирования
+            const maxTemp = Math.max(...temperatures);
+            const minTemp = Math.min(...temperatures);
+            const maxHumidity = Math.max(...humidities);
+            const minHumidity = Math.min(...humidities);
+            
+            // Создаем шкалу для температуры
+            const tempScale = 250 / (maxTemp - minTemp);
+            const humidityScale = 250 / (maxHumidity - minHumidity);
+            
+            // Добавляем метки на ось Y для температуры
+            for (let i = 0; i <= 5; i++) {
+                const value = minTemp + (maxTemp - minTemp) * i / 5;
+                const tick = document.createElement('div');
+                tick.className = 'y-tick';
+                tick.style.bottom = `${(i / 5) * 250}px`;
+                tick.textContent = value.toFixed(1);
+                tempChart.appendChild(tick);
+            }
+            
+            // Добавляем метки на ось Y для влажности
+            for (let i = 0; i <= 5; i++) {
+                const value = minHumidity + (maxHumidity - minHumidity) * i / 5;
+                const tick = document.createElement('div');
+                tick.className = 'y-tick';
+                tick.style.bottom = `${(i / 5) * 250}px`;
+                tick.textContent = value.toFixed(0);
+                humidityChart.appendChild(tick);
+            }
+            
+            // Создаем столбцы для температуры
+            timeLabels.forEach((time, index) => {
+                const temp = temperatures[index];
+                const barHeight = (temp - minTemp) * tempScale;
+                
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.style.height = `${barHeight}px`;
+                
+                const barValue = document.createElement('div');
+                barValue.className = 'bar-value';
+                barValue.textContent = temp.toFixed(1);
+                
+                const barLabel = document.createElement('div');
+                barLabel.className = 'bar-label';
+                barLabel.textContent = time;
+                
+                bar.appendChild(barValue);
+                bar.appendChild(barLabel);
+                tempChart.appendChild(bar);
+            });
+            
+            // Создаем столбцы для влажности
+            timeLabels.forEach((time, index) => {
+                const humidity = humidities[index];
+                const barHeight = (humidity - minHumidity) * humidityScale;
+                
+                const bar = document.createElement('div');
+                bar.className = 'bar humidity';
+                bar.style.height = `${barHeight}px`;
+                
+                const barValue = document.createElement('div');
+                barValue.className = 'bar-value';
+                barValue.textContent = humidity.toFixed(0);
+                
+                const barLabel = document.createElement('div');
+                barLabel.className = 'bar-label';
+                barLabel.textContent = time;
+                
+                bar.appendChild(barValue);
+                bar.appendChild(barLabel);
+                humidityChart.appendChild(bar);
+            });
+        }
+    </script>
+</body>
+</html>
