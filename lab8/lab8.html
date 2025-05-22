@@ -16,13 +16,9 @@
         <div id="app">
             <h1 :title="messageRus">{{message}}</h1>
             <p>Счетчик: {{ counter }}</p>
-            <button @click="incCounter">++</button>
-            <button @click="decCounter">--</button>
+            <button @click="incCounter" v-if="counter<10">++</button>
+            <button @click="decCounter" v-if="counter>0">--</button>
     </main>
-    <hr>
-    <ul>
-        <li><a href=""></a></li>
-    </ul>
     <footer style="text-align: right; background-color: rgb(216, 134, 185);"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
     <script>
         Vue.createApp({
