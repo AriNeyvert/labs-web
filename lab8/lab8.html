@@ -15,7 +15,9 @@
     <main>
         <div id="app">
             <h1 :title="messageRus">{{message}}</h1>
-        </div>
+            <p>Счетчик: {{ counter }}</p>
+            <button @click="incCounter">++</button>
+            <button @click="decCounter">--</button>
     </main>
     <hr>
     <ul>
@@ -28,8 +30,17 @@
                 return{
                     message: 'Hello!',
                     messageRus: 'Hello!',
+                    counter: 1,
                 }
             },
+            methods: {
+                incCounter(){
+                    this.counter++
+                },
+                decCounter(){
+                    this.counter--
+                },
+            }
         }).mount('#app')
     </script>
 </body>
