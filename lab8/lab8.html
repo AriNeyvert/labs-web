@@ -24,6 +24,15 @@
             <div>Имя: {{user.name}}</div>
             <div>Возраст: {{user.age}}</div>
             <div>Телефон: {{user.tel}}</div>
+            <hr>
+
+            <h2>Цветы</h2>
+            <ul>
+                <li v-for="flower in flowers">
+                    {{ flower }}
+                </li>
+            </ul>
+            <hr>
         </div>
     </main>
     <footer style="text-align: right; background-color: rgb(216, 134, 185);"><b>&copy; Арина Нейверт, ФБИ-33, 2 курс, 2025</b></footer>
@@ -38,7 +47,8 @@
                         name: 'Арина',
                         age: '20',
                         tel: '222-33-44'
-                    }
+                    },
+                    flowers: ['роза', 'тюльпан', 'маргаритка', 'георгин', 'одуванчик'],
                 }
             },
             methods: {
